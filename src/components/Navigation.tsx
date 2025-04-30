@@ -2,41 +2,60 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Search, Home, Plus, Info } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Navigation() {
   const pathname = usePathname();
 
-  const links = [
-    { href: '/', label: 'Home' },
-    { href: '/browse', label: 'Browse' },
-    { href: '/quiz', label: 'Quiz' },
-    { href: '/submit', label: 'Submit' },
-    { href: '/about', label: 'About' },
-  ];
-
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold text-indigo-600">SaaS Scout</span>
+    <nav className="fixed top-0 left-0 right-0 z-50 navbar">
+      <div className="max-w-screen-xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <Link href="/" className="flex items-center">
+            <Logo />
+          </Link>
+          <div className="flex items-center space-x-4">
+            <Link
+              href="/"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
+                pathname === '/'
+                  ? 'text-pink-500 bg-pink-50'
+                  : 'text-gray-600 hover:text-pink-500'
+              }`}
+            >
+              <Home className="w-5 h-5" />
+              <span>Home</span>
             </Link>
-          </div>
-          <div className="flex space-x-8">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  pathname === link.href
-                    ? 'border-indigo-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              href="/browse"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
+                pathname === '/browse'
+                  ? 'text-pink-500 bg-pink-50'
+                  : 'text-gray-600 hover:text-pink-500'
+              }`}
+            >
+              <Search className="w-5 h-5" />
+              <span>Browse</span>
+            </Link>
+            <Link
+              href="/submit"
+              className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500 text-white hover:opacity-90 transition-all duration-200"
+            >
+              <Plus className="w-5 h-5" />
+              <span>Submit</span>
+            </Link>
+            <Link
+              href="/about"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 ${
+                pathname === '/about'
+                  ? 'text-pink-500 bg-pink-50'
+                  : 'text-gray-600 hover:text-pink-500'
+              }`}
+            >
+              <Info className="w-5 h-5" />
+              <span>About</span>
+            </Link>
           </div>
         </div>
       </div>

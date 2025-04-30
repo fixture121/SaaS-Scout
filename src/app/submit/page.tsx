@@ -15,7 +15,7 @@ const categories: ProductCategory[] = [
   'Others',
 ];
 
-export default function SubmitPage() {
+export default function Submit() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
@@ -45,19 +45,19 @@ export default function SubmitPage() {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl pt-24">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Submit a SaaS Tool
-            </h1>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-              Help us discover new and interesting SaaS tools. We'll review your submission and add it to our curated list.
-            </p>
-          </div>
+    <main className="min-h-screen pt-32 pb-16">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold mb-6 text-gradient">
+            Submit Your Tool
+          </h1>
+          <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-8">
+            Share your SaaS product with our community
+          </p>
+        </div>
 
-          <form onSubmit={handleSubmit} className="mt-12 space-y-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Product Name
@@ -68,7 +68,7 @@ export default function SubmitPage() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
               />
             </div>
 
@@ -82,21 +82,21 @@ export default function SubmitPage() {
                 value={formData.website}
                 onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
               />
             </div>
 
             <div>
               <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Short Description
+                Description
               </label>
               <textarea
                 id="description"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required
-                rows={3}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                rows={4}
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
               />
             </div>
 
@@ -109,7 +109,7 @@ export default function SubmitPage() {
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value as ProductCategory })}
                 required
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
               >
                 <option value="">Select a category</option>
                 {categories.map((category) => (
@@ -130,7 +130,7 @@ export default function SubmitPage() {
                 onChange={(e) => setFormData({ ...formData, whyInteresting: e.target.value })}
                 required
                 rows={4}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+                className="mt-1 block w-full rounded-lg border border-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
               />
             </div>
 
@@ -140,18 +140,16 @@ export default function SubmitPage() {
               </div>
             )}
 
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-400"
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white py-3 px-6 rounded-lg hover:opacity-90 transition-all duration-200"
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit Tool'}
+            </button>
           </form>
         </div>
       </div>
-    </div>
+    </main>
   );
 } 
